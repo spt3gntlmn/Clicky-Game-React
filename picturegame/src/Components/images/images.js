@@ -62,16 +62,16 @@ class Images extends React.Component {
   render() {
     return (
       <div >
-        < h1 > Score: {this.state.score}   High score: {this.state.highScore}</ h1>
+        < h1 style={{ textAlign: 'center' }}> Score: {this.state.score}   High score: {this.state.highScore}</ h1>
         {
           this.state.images.map((image, index) => {
             return (
-              <img class="pics" style={{ margin: '12px', maxHeight: "500px" }} alt="paceholder" src={image} onClick={((e) => this.clickEvent(e))} />
+              <img class="pics" style={{ textAlign: 'center', margin: '12px', maxHeight: "450px" }} alt="paceholder" src={image} onClick={((e) => this.clickEvent(e))} />
             )
           }
           )
         }
-      </div >
+      </div>
     )
   };
 }
