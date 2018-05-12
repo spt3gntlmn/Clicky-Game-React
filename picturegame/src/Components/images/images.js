@@ -9,8 +9,6 @@ class Images extends React.Component {
   }
 
   clickEvent(e) {
-    // const scoreState = this.state.score;
-    // const priorStateScore = [...this.state.images]
     const clicked = this.state.clicked;
     // alert(e.target.src);
     const shuffledImages = this.arrayShuffle(this.state.images);
@@ -31,10 +29,6 @@ class Images extends React.Component {
           console.log(this.state.highScore);
         }
       } else {
-        // this.setState({
-        //   score: this.state.score + 1
-        // })
-        console.log('Clicky GAME!!!!!!!!!!!!', this.state.score);
         if (this.state.highScore < this.state.score) {
           this.setState({
             highScore: this.state.score
@@ -67,12 +61,12 @@ class Images extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div >
         < h1 > Score: {this.state.score}   High score: {this.state.highScore}</ h1>
         {
           this.state.images.map((image, index) => {
             return (
-              <img style={{ margin: '5px', maxHeight: "500px" }} src={image} onClick={((e) => this.clickEvent(e))} />
+              <img class="pics" style={{ margin: '12px', maxHeight: "500px" }} alt="paceholder" src={image} onClick={((e) => this.clickEvent(e))} />
             )
           }
           )
