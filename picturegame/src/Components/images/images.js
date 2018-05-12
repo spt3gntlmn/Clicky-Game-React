@@ -3,19 +3,47 @@ import React from 'react';
 class Images extends React.Component {
   state = {
     score: 0,
-    highScore: 3,
+    highScore: 0,
     images: ['./images/Black-Panther-Cover.jpg', './images/Captain-America-EW-Cover.jpg', './images/Dr-Strange-Cover.jpg', './images/Drax-Cover.jpg', './images/Falcon-Cover.jpg', './images/Hulk-Cover.jpg', './images/Iron-Man-Cover.jpeg', './images/Shuri-Vision-Cover.jpg', './images/Spider-Man-Cover.jpg', './images/Thanos-Cover.jpg', './images/Thor-Cover.jpg', './images/Winter-Soldier.jpg'],
     clicked: []
   }
 
   clickEvent(e) {
-    const scoreState = this.state.score;
-    const priorStateScore = [...this.state.images]
+    // const scoreState = this.state.score;
+    // const priorStateScore = [...this.state.images]
+    const clicked = this.state.clicked;
     // alert(e.target.src);
     const shuffledImages = this.arrayShuffle(this.state.images);
     this.setState({
-      images: shuffledImages
+      images: shuffledImages,
+      score: this.state.score + 1
     })
+    for (let i = 0; i < clicked.length; i++) {
+      if (e.target.src === clicked[i]) {
+        this.setState({
+          clicked: [],
+          score: 0
+        })
+        if (this.state.highScore < this.state.score) {
+          this.setState({
+            highScore: this.state.score
+          });
+          console.log(this.state.highScore);
+        }
+      } else {
+        // this.setState({
+        //   score: this.state.score + 1
+        // })
+        console.log('Clicky GAME!!!!!!!!!!!!', this.state.score);
+        if (this.state.highScore < this.state.score) {
+          this.setState({
+            highScore: this.state.score
+          });
+        }
+      }
+    }
+    clicked.push(e.target.src);
+    console.log(clicked);
   }
 
   arrayShuffle(array) {
@@ -39,8 +67,8 @@ class Images extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundImage: `url('./images/infinity-War.jpg'})` }} >
-        < h1 > Score: {this.state.score} High score: {this.state.highScore}</ h1>
+      <div>
+        < h1 > Score: {this.state.score}   High score: {this.state.highScore}</ h1>
         {
           this.state.images.map((image, index) => {
             return (
